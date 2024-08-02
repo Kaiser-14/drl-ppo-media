@@ -1,0 +1,5 @@
+numpy==1.26.4
+tensorflow==2.14.0
+gym==0.17.3
+setuptools==68.2.0
+requests==2.31.0

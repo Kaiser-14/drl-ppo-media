@@ -1,0 +1,32 @@
+# CRF 10
+
+
+		# Blockiness
+		if observation['blockiness'] > 0.7:
+			blockiness_reward = 20 * observation['blockiness']
+		elif observation['blockiness'] > 0.5:
+			blockiness_reward = 10 * observation['blockiness']
+		else:
+			blockiness_reward = 0
+
+		# Block loss
+		blockloss_reward = max(2*(5-observation['block_loss']), -50)
+
+		# Profiles
+		if observation['blockiness'] > 0.6 and observation['block_loss'] < 5.0:
+			if observation['packet_loss'] < 10.0:
+				if _action == 0:
+					profile_reward = 10
+				elif _action == 1:
+					profile_reward = 5
+				else:
+					profile_reward = 0
+			else:
+				if _action == 0:
+					profile_reward = -10
+				elif _action == 1:
+					profile_reward = -5
+				else:
+					profile_reward = 0
+		else:
+			profile_reward = 0
